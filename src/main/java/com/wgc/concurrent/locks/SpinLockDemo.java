@@ -5,6 +5,8 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @Author wgc
  * @Description //自旋锁 示例
+ * 定义：指尝试获取锁的线程不会立即阻塞，而是采用循环的方式去尝试获取锁，
+ * 这样的好处是减少线程上下文的切换的消耗，缺点是循环会消耗CPU
  * @Date 2021/11/25
  **/
 public class SpinLockDemo {
