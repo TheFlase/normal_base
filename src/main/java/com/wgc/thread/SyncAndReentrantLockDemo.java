@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author wgc
- * @Description // 生产消费者 示例
+ * @Description // 生产消费者 示例   多Condition控制线程顺序执行
  * 题目：多线程之间顺序调用，实现A->B->C三个线程启动，要求如下
  * A打印1次，B打印2次，C打印3次，重复打印10轮。
  * @Date 2021/11/26
