@@ -14,6 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
  **/
 public class ReentrantDemo1 implements Runnable{
     Lock lock = new ReentrantLock();
+    static Object lockObj = new Object();
 
     public static void main(String[] args) {
         Sporter sporter = new Sporter();
@@ -49,6 +50,21 @@ public class ReentrantDemo1 implements Runnable{
 
     }
 
+    /**
+     * 可重入锁演示2
+     */
+    public static void repeatIn(){
+        synchronized (lockObj){
+            System.out.println("可重入锁外层。。");
+            synchronized (lockObj){
+                System.out.println("可重入锁中层。。");
+                synchronized (lockObj){
+                    System.out.println("可重入锁内层。。");
+                }
+            }
+        }
+    }
+
     static class Sporter{
         private synchronized void play(){
             System.out.println(Thread.currentThread().getName()+"\t 打球");
@@ -73,6 +89,7 @@ public class ReentrantDemo1 implements Runnable{
             System.out.println(Thread.currentThread().getName()+"\tput");
             get();
         } finally {
+            // 加锁次数和释放锁次数如果不一致，其他线程就无法获取锁，导致线程一直等待。
             lock.unlock();
             lock.unlock();
         }
